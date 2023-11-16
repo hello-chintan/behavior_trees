@@ -1,0 +1,21 @@
+<root BTCPP_format="4">
+    <TreeNodesModel>
+        <Action ID="TaskA">
+            <input_port name="msec" type="int"/>
+        </Action>
+        <Action ID="TaskB">
+            <input_port name="msec" type="int"/>
+        </Action>
+        <Action ID="TaskC">
+            <input_port name="msec" type="int"/>
+        </Action>
+        <Action ID="TaskD">
+            <input_port name="msec" type="int"/>
+        </Action>
+        <Action ID="TaskE">
+            <input_port name="msec" type="int"/>
+        </Action>
+        <Action ID="TaskEnd"/>
+        <Action ID="TaskStart"/>
+    </TreeNodesModel>
+</root>

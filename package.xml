@@ -1,11 +1,11 @@
 <package format="3">
-  <name>btcpp_sample</name>
+  <name>behavior_trees</name>
   <version>0.1.0</version>
-  <description>Dummy project to check compiling</description>
+  <description>Project to try behavior trees</description>
 
-  <maintainer email="davide.faconti@gmail.com">Davide Faconti</maintainer>
+  <maintainer email="chintujaguar@gmail.com">Chintan Desai</maintainer>
   <license>MIT</license>
-  <author>Davide Faconti</author>
+  <author>Chintan Desai</author>
 
   <buildtool_depend condition="$ROS_VERSION == 1">catkin</buildtool_depend>
   <buildtool_depend condition="$ROS_VERSION == 2">ament_cmake</buildtool_depend>

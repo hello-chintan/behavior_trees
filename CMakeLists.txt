@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(btcpp_sample LANGUAGES CXX)
+project(behavior_trees LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(btcpp_sample main.cpp)
+add_executable(btcpp_sample example_one.cpp)
 
 find_package(ament_cmake QUIET)
 
@@ -13,6 +13,12 @@ if(ament_cmake_FOUND)
 
     find_package(behaviortree_cpp REQUIRED)
     ament_target_dependencies(btcpp_sample behaviortree_cpp)
+
+    install(TARGETS
+        btcpp_sample
+        DESTINATION lib/${PROJECT_NAME})
+
+    install(DIRECTORY bt_xml DESTINATION lib/${PROJECT_NAME})
 
 elseif( CATKIN_DEVEL_PREFIX OR CATKIN_BUILD_BINARY_PACKAGE)
 
@@ -27,4 +33,6 @@ else()
     target_link_libraries(btcpp_sample BT::behaviortree_cpp)
 
 endif()
+
+ament_package()
 

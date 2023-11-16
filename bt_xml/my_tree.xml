@@ -1,0 +1,13 @@
+<root BTCPP_format="4" >
+    <BehaviorTree ID="MainTree">
+        <Sequence name="root_sequence">
+            <TaskStart name="task_start"/>
+            <TaskA name="task_A"/>
+            <TaskB name="task_B"/>
+            <TaskC name="task_C"/>
+            <TaskD name="task_D"/>
+            <TaskE name="task_E"/>
+            <TaskEnd name="task_end"/>
+        </Sequence>
+    </BehaviorTree>
+</root>
