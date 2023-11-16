@@ -2,11 +2,11 @@
     <BehaviorTree ID="MainTree">
         <Sequence name="root_sequence">
             <TaskStart name="task_start"/>
-            <TaskA name="task_A"/>
-            <TaskB name="task_B"/>
-            <TaskC name="task_C"/>
-            <TaskD name="task_D"/>
-            <TaskE name="task_E"/>
+            <TaskA name="task_A" msec="3000" />
+            <TaskB name="task_B" msec="1000" />
+            <TaskC name="task_C" msec="5000" />
+            <TaskD name="task_D" msec="3000" />
+            <TaskE name="task_E" msec="9000" />
             <TaskEnd name="task_end"/>
         </Sequence>
     </BehaviorTree>
