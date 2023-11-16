@@ -54,7 +54,11 @@ The code defines seven nodes (Start, End, and tasks named A to E) or actions tha
 
 The tasks A to E all support asynchronous execution, which means that they are able to execute in parallel. While executing the tasks are in the RUNNING state and do not block the ticking mechanism of behavior tree.
 
+
+
 Additionally, tasks A to E are able to share parameters between eachother using the parameter blackboard built into the BehaviorTree.CPP library. This can be used to modify the behavior of task execution.
 
 Groot2 provides the visualization and logging capabilities. Behavior Trees being a composable and modular framework, all tasks in this exercise are reusable. Below is an image of how the visualization looks in Groot2.
+
+![Screenshot from 2023-11-16 11-09-48](https://github.com/hello-chintan/behavior_trees/assets/97639181/fd05c243-f166-4e4e-97a2-452629677673)
 
