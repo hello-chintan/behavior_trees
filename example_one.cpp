@@ -355,7 +355,7 @@ int main()
         
     // IMPORTANT: when the object "tree" goes out of scope, all the 
     // TreeNodes are destroyed
-    auto tree = factory.createTreeFromFile("./install/btcpp_sample/lib/btcpp_sample/bt_xml/my_tree.xml");
+    auto tree = factory.createTreeFromFile("./install/behavior_trees/lib/behavior_trees/bt_xml/my_tree.xml");
 
     // Connect with Groot2
     BT::Groot2Publisher publisher(tree);
