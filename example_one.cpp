@@ -53,7 +53,7 @@ public:
     // You must override the virtual function tick()
     BT::NodeStatus tick() override
     {
-        std::cout << "Task execution failed due to errored task: " << message << std::endl;
+        std::cout << "Error handling triggered due to failed task: " << message << std::endl;
         return BT::NodeStatus::SUCCESS;
     }
 };
@@ -61,6 +61,8 @@ public:
 class TaskA : public BT::StatefulActionNode
 {
 public:
+    int msec = 0;
+    
     TaskA(const std::string& name, const BT::NodeConfig& config) :
         BT::StatefulActionNode(name, config)
     {}
@@ -73,7 +75,6 @@ public:
 
     NodeStatus onStart() override
     {
-      int msec = 0;
       getInput("msec", msec);
 
       std::cout << "Executing task A" << std::endl;
@@ -94,8 +95,16 @@ public:
     NodeStatus onRunning() override
     {
       if ( std::chrono::system_clock::now() >= deadline_ ) {
-        std::cout << "Finished task A" << std::endl;
-        return NodeStatus::SUCCESS;
+        if(msec % 2000 == 0)
+        {
+          std::cout << "Finished task A" << std::endl;
+          return NodeStatus::SUCCESS;
+        }
+        else{
+          std::cout << "Failed task A" << std::endl;
+          return NodeStatus::FAILURE;
+        }
+        
       }
       else {
         return NodeStatus::RUNNING;
@@ -115,6 +124,8 @@ private:
 class TaskB : public BT::StatefulActionNode
 {
 public:
+    int msec = 0;
+    
     TaskB(const std::string& name, const BT::NodeConfig& config) :
         BT::StatefulActionNode(name, config)
     {}
@@ -127,7 +138,6 @@ public:
 
     NodeStatus onStart() override
     {
-      int msec = 0;
       getInput("msec", msec);
 
       std::cout << "Executing task B" << std::endl;
@@ -148,8 +158,15 @@ public:
     NodeStatus onRunning() override
     {
       if ( std::chrono::system_clock::now() >= deadline_ ) {
-        std::cout << "Finished task B" << std::endl;
-        return NodeStatus::SUCCESS;
+        if(msec % 2000 == 0)
+        {
+          std::cout << "Finished task B" << std::endl;
+          return NodeStatus::SUCCESS;
+        }
+        else{
+          std::cout << "Failed task B" << std::endl;
+          return NodeStatus::FAILURE;
+        }
       }
       else {
         return NodeStatus::RUNNING;
@@ -169,6 +186,8 @@ private:
 class TaskC : public BT::StatefulActionNode
 {
 public:
+    int msec = 0;
+    
     TaskC(const std::string& name, const BT::NodeConfig& config) :
         BT::StatefulActionNode(name, config)
     {}
@@ -181,7 +200,6 @@ public:
 
     NodeStatus onStart() override
     {
-      int msec = 0;
       getInput("msec", msec);
 
       std::cout << "Executing task C" << std::endl;
@@ -202,8 +220,15 @@ public:
     NodeStatus onRunning() override
     {
       if ( std::chrono::system_clock::now() >= deadline_ ) {
-        std::cout << "Finished task C" << std::endl;
-        return NodeStatus::SUCCESS;
+        if(msec % 2000 == 0)
+        {
+          std::cout << "Finished task C" << std::endl;
+          return NodeStatus::SUCCESS;
+        }
+        else{
+          std::cout << "Failed task C" << std::endl;
+          return NodeStatus::FAILURE;
+        }
       }
       else {
         return NodeStatus::RUNNING;
@@ -223,6 +248,8 @@ private:
 class TaskD : public BT::StatefulActionNode
 {
 public:
+    int msec = 0;
+    
     TaskD(const std::string& name, const BT::NodeConfig& config) :
         BT::StatefulActionNode(name, config)
     {}
@@ -235,7 +262,6 @@ public:
 
     NodeStatus onStart() override
     {
-      int msec = 0;
       getInput("msec", msec);
 
       std::cout << "Executing task D" << std::endl;
@@ -256,8 +282,15 @@ public:
     NodeStatus onRunning() override
     {
       if ( std::chrono::system_clock::now() >= deadline_ ) {
-        std::cout << "Finished task D" << std::endl;
-        return NodeStatus::SUCCESS;
+        if(msec % 2000 == 0)
+        {
+          std::cout << "Finished task D" << std::endl;
+          return NodeStatus::SUCCESS;
+        }
+        else{
+          std::cout << "Failed task D" << std::endl;
+          return NodeStatus::FAILURE;
+        }
       }
       else {
         return NodeStatus::RUNNING;
@@ -277,6 +310,8 @@ private:
 class TaskE : public BT::StatefulActionNode
 {
 public:
+    int msec = 0;
+    
     TaskE(const std::string& name, const BT::NodeConfig& config) :
         BT::StatefulActionNode(name, config)
     {}
@@ -289,7 +324,6 @@ public:
 
     NodeStatus onStart() override
     {
-      int msec = 0;
       getInput("msec", msec);
 
       std::cout << "Executing task E" << std::endl;
@@ -310,8 +344,15 @@ public:
     NodeStatus onRunning() override
     {
       if ( std::chrono::system_clock::now() >= deadline_ ) {
-        std::cout << "Finished task E" << std::endl;
-        return NodeStatus::SUCCESS;
+        if(msec % 2000 == 0)
+        {
+          std::cout << "Finished task E" << std::endl;
+          return NodeStatus::SUCCESS;
+        }
+        else{
+          std::cout << "Failed task E" << std::endl;
+          return NodeStatus::FAILURE;
+        }
       }
       else {
         return NodeStatus::RUNNING;
