@@ -1,13 +1,54 @@
-<root BTCPP_format="4" >
-    <BehaviorTree ID="MainTree">
-        <Sequence name="root_sequence">
-            <TaskStart name="task_start"/>
-            <TaskA name="task_A" msec="3000" />
-            <TaskB name="task_B" msec="1000" />
-            <TaskC name="task_C" msec="5000" />
-            <TaskD name="task_D" msec="3000" />
-            <TaskE name="task_E" msec="9000" />
-            <TaskEnd name="task_end"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="4">
+  <BehaviorTree ID="MainTree">
+    <Sequence>
+      <TaskStart name="task_start"/>
+      <Fallback>
+        <Sequence>
+          <TaskA name="task_A"
+                 msec="3000"/>
+          <ParallelAll max_failures="1">
+            <TaskB name="task_B"
+                   msec="1000"/>
+            <TaskC name="task_C"
+                   msec="5000"/>
+          </ParallelAll>
+          <TaskD name="task_D"
+                 msec="3000"/>
         </Sequence>
-    </BehaviorTree>
+        <TaskError/>
+      </Fallback>
+      <TaskE name="task_E"
+             msec="9000"/>
+      <TaskEnd name="task_end"/>
+    </Sequence>
+  </BehaviorTree>
+
+  <!-- Description of Node Models (used by Groot) -->
+  <TreeNodesModel>
+    <Action ID="TaskA">
+      <input_port name="msec"
+                  type="int"/>
+    </Action>
+    <Action ID="TaskB">
+      <input_port name="msec"
+                  type="int"/>
+    </Action>
+    <Action ID="TaskC">
+      <input_port name="msec"
+                  type="int"/>
+    </Action>
+    <Action ID="TaskD">
+      <input_port name="msec"
+                  type="int"/>
+    </Action>
+    <Action ID="TaskE">
+      <input_port name="msec"
+                  type="int"/>
+    </Action>
+    <Action ID="TaskEnd"/>
+    <Action ID="TaskError"/>
+    <Action ID="TaskStart"/>
+  </TreeNodesModel>
+
 </root>
