@@ -17,5 +17,6 @@
         </Action>
         <Action ID="TaskEnd"/>
         <Action ID="TaskStart"/>
+        <Action ID="TaskError"/>
     </TreeNodesModel>
 </root>

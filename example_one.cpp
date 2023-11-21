@@ -41,6 +41,23 @@ public:
     }
 };
 
+class TaskError : public BT::SyncActionNode
+{
+public:
+    TaskError(const std::string& name) :
+        BT::SyncActionNode(name, {})
+    {}
+
+    char message{'A'};
+    
+    // You must override the virtual function tick()
+    BT::NodeStatus tick() override
+    {
+        std::cout << "Task execution failed due to errored task: " << message << std::endl;
+        return BT::NodeStatus::SUCCESS;
+    }
+};
+
 class TaskA : public BT::StatefulActionNode
 {
 public:
@@ -347,6 +364,7 @@ int main()
     factory.registerNodeType<TaskD>("TaskD");
     factory.registerNodeType<TaskE>("TaskE");
     factory.registerNodeType<TaskEnd>("TaskEnd");
+    factory.registerNodeType<TaskError>("TaskError");
 
     // createFile(factory);
 
