@@ -411,7 +411,7 @@ void createFile(BT::BehaviorTreeFactory & factory){
     }
 }
 
-int main()
+int main(int argc, char ** argv)
 {
     // We use the BehaviorTreeFactory to register our custom nodes
     BT::BehaviorTreeFactory factory;
@@ -433,7 +433,15 @@ int main()
         
     // IMPORTANT: when the object "tree" goes out of scope, all the 
     // TreeNodes are destroyed
-    auto tree = factory.createTreeFromFile("./install/behavior_trees/lib/behavior_trees/bt_xml/my_tree_error_handling.xml");
+    std::string filename;
+    std::string xml_name{"my_tree.xml"};
+
+    if(argc > 1){
+      xml_name = argv[1];
+    }
+
+    filename = "./install/behavior_trees/lib/behavior_trees/bt_xml/" + xml_name;
+    auto tree = factory.createTreeFromFile(filename);
 
     // Connect with Groot2
     BT::Groot2Publisher publisher(tree);
