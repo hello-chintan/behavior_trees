@@ -44,16 +44,20 @@ public:
 class TaskError : public BT::SyncActionNode
 {
 public:
-    TaskError(const std::string& name) :
-        BT::SyncActionNode(name, {})
+    TaskError(const std::string& name, const BT::NodeConfig& config) :
+        BT::SyncActionNode(name, config)
     {}
 
-    char message{'A'};
+    static BT::PortsList providedPorts()
+    {
+        return{ BT::InputPort<std::string>("message") };
+    }
     
     // You must override the virtual function tick()
     BT::NodeStatus tick() override
     {
-        std::cout << "Error handling triggered due to failed task: " << message << std::endl;
+        Expected<std::string> msg = getInput<std::string>("message");
+        std::cout << "Error handling triggered due to failed task: " << msg.value() << std::endl;
         return BT::NodeStatus::SUCCESS;
     }
 };
@@ -69,8 +73,9 @@ public:
 
     static BT::PortsList providedPorts()
     {
-        // amount of milliseconds that we want to sleep
-        return{ BT::InputPort<int>("msec") };
+        // amount of milliseconds that we want to sleep and error message to print
+        return{ BT::InputPort<int>("msec"),
+                BT::OutputPort<std::string>("message") };
     }
 
     NodeStatus onStart() override
@@ -101,7 +106,9 @@ public:
           return NodeStatus::SUCCESS;
         }
         else{
-          std::cout << "Failed task A" << std::endl;
+          std::string msg{"Failed task A"};
+          std::cout << msg << std::endl;
+          setOutput("message", msg);
           return NodeStatus::FAILURE;
         }
         
@@ -132,8 +139,9 @@ public:
 
     static BT::PortsList providedPorts()
     {
-        // amount of milliseconds that we want to sleep
-        return{ BT::InputPort<int>("msec") };
+        // amount of milliseconds that we want to sleep and error message to print
+        return{ BT::InputPort<int>("msec"),
+                BT::OutputPort<std::string>("message") };
     }
 
     NodeStatus onStart() override
@@ -164,7 +172,9 @@ public:
           return NodeStatus::SUCCESS;
         }
         else{
-          std::cout << "Failed task B" << std::endl;
+          std::string msg{"Failed task B"};
+          std::cout << msg << std::endl;
+          setOutput("message", msg);
           return NodeStatus::FAILURE;
         }
       }
@@ -194,8 +204,9 @@ public:
 
     static BT::PortsList providedPorts()
     {
-        // amount of milliseconds that we want to sleep
-        return{ BT::InputPort<int>("msec") };
+        // amount of milliseconds that we want to sleep and error message to print
+        return{ BT::InputPort<int>("msec"),
+                BT::OutputPort<std::string>("message") };
     }
 
     NodeStatus onStart() override
@@ -226,7 +237,9 @@ public:
           return NodeStatus::SUCCESS;
         }
         else{
-          std::cout << "Failed task C" << std::endl;
+          std::string msg{"Failed task C"};
+          std::cout << msg << std::endl;
+          setOutput("message", msg);
           return NodeStatus::FAILURE;
         }
       }
@@ -256,8 +269,9 @@ public:
 
     static BT::PortsList providedPorts()
     {
-        // amount of milliseconds that we want to sleep
-        return{ BT::InputPort<int>("msec") };
+        // amount of milliseconds that we want to sleep and error message to print
+        return{ BT::InputPort<int>("msec"),
+                BT::OutputPort<std::string>("message") };
     }
 
     NodeStatus onStart() override
@@ -288,7 +302,9 @@ public:
           return NodeStatus::SUCCESS;
         }
         else{
-          std::cout << "Failed task D" << std::endl;
+          std::string msg{"Failed task D"};
+          std::cout << msg << std::endl;
+          setOutput("message", msg);
           return NodeStatus::FAILURE;
         }
       }
@@ -318,8 +334,9 @@ public:
 
     static BT::PortsList providedPorts()
     {
-        // amount of milliseconds that we want to sleep
-        return{ BT::InputPort<int>("msec") };
+        // amount of milliseconds that we want to sleep and error message to print
+        return{ BT::InputPort<int>("msec"),
+                BT::OutputPort<std::string>("message") };
     }
 
     NodeStatus onStart() override
@@ -350,7 +367,9 @@ public:
           return NodeStatus::SUCCESS;
         }
         else{
-          std::cout << "Failed task E" << std::endl;
+          std::string msg{"Failed task E"};
+          std::cout << msg << std::endl;
+          setOutput("message", msg);
           return NodeStatus::FAILURE;
         }
       }
@@ -414,7 +433,7 @@ int main()
         
     // IMPORTANT: when the object "tree" goes out of scope, all the 
     // TreeNodes are destroyed
-    auto tree = factory.createTreeFromFile("./install/behavior_trees/lib/behavior_trees/bt_xml/my_tree.xml");
+    auto tree = factory.createTreeFromFile("./install/behavior_trees/lib/behavior_trees/bt_xml/my_tree_error_handling.xml");
 
     // Connect with Groot2
     BT::Groot2Publisher publisher(tree);

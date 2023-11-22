@@ -2,21 +2,28 @@
     <TreeNodesModel>
         <Action ID="TaskA">
             <input_port name="msec" type="int"/>
+            <output_port name="message" type="string"/>
         </Action>
         <Action ID="TaskB">
             <input_port name="msec" type="int"/>
+            <output_port name="message" type="string"/>
         </Action>
         <Action ID="TaskC">
             <input_port name="msec" type="int"/>
+            <output_port name="message" type="string"/>
         </Action>
         <Action ID="TaskD">
             <input_port name="msec" type="int"/>
+            <output_port name="message" type="string"/>
         </Action>
         <Action ID="TaskE">
             <input_port name="msec" type="int"/>
+            <output_port name="message" type="string"/>
         </Action>
         <Action ID="TaskEnd"/>
         <Action ID="TaskStart"/>
-        <Action ID="TaskError"/>
+        <Action ID="TaskError">
+            <input_port name="message" type="string"/>
+        </Action>
     </TreeNodesModel>
 </root>

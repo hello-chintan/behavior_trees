@@ -6,22 +6,28 @@
       <Fallback>
         <Sequence>
           <TaskA name="task_A"
-                 msec="4000"/>
+                 msec="4000"
+                 message="{error}"/>
           <ParallelAll max_failures="1">
             <TaskB name="task_B"
-                   msec="2000"/>
+                   msec="2000"
+                   message="{error}"/>
             <TaskC name="task_C"
-                   msec="4000"/>
+                   msec="4000"
+                   message="{error}"/>
           </ParallelAll>
           <TaskD name="task_D"
-                 msec="4000"/>
+                 msec="3000"
+                 message="{error}"/>
         </Sequence>
         <ForceFailure>
-          <TaskError/>
+          <TaskError name="task_Error"
+                     message="{error}"/>
         </ForceFailure>
       </Fallback>
       <TaskE name="task_E"
-             msec="8000"/>
+             msec="8000"
+             message="{error}"/>
       <TaskEnd name="task_end"/>
     </Sequence>
   </BehaviorTree>
@@ -31,25 +37,32 @@
     <Action ID="TaskA">
       <input_port name="msec"
                   type="int"/>
+      <output_port name="message" type="string"/>
     </Action>
     <Action ID="TaskB">
       <input_port name="msec"
                   type="int"/>
+      <output_port name="message" type="string"/>
     </Action>
     <Action ID="TaskC">
       <input_port name="msec"
                   type="int"/>
+      <output_port name="message" type="string"/>
     </Action>
     <Action ID="TaskD">
       <input_port name="msec"
                   type="int"/>
+      <output_port name="message" type="string"/>
     </Action>
     <Action ID="TaskE">
       <input_port name="msec"
                   type="int"/>
+      <output_port name="message" type="string"/>
     </Action>
     <Action ID="TaskEnd"/>
-    <Action ID="TaskError"/>
+    <Action ID="TaskError">
+      <input_port name="message" type="string"/>
+    </Action>
     <Action ID="TaskStart"/>
   </TreeNodesModel>
 
